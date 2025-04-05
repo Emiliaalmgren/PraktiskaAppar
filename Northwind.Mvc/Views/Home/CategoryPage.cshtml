@@ -1,0 +1,36 @@
+﻿@model PraktiskaAppar.Category
+
+@{
+	ViewData["Title"] = "Products of Category - " + Model.CategoryName;
+}
+
+<div class=" row">
+    <div class="col-md-12">
+        <h1>Category: @Model.CategoryName</h1>
+        @if (Model is not null)
+        {
+            <h2>Products</h2>
+            <h6>Antal produkter i kategori: @Model.Products.Count()</h6>
+            <div id="product-columns">
+                <ul class="list-group">
+                    @foreach (var product in Model.Products)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-start bg-info text-white">
+                            <a asp-controller="Home" asp-action="ProductDetail" 
+                            asp-route-id="@product.ProductId" class="btn btn-outline-light w-100">
+                                <div class="d-flex justify-content-center align-items-center ms-2 me-auto w-100">
+                                    <span class="text-center text-wrap">
+                                        @product.ProductName
+                                    </span>
+                                </div>
+                                <span class="badge bg-light text-dark">
+                                    @(product.UnitPrice is null ? "zero" : product.UnitPrice.Value.ToString("C"))
+                                </span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

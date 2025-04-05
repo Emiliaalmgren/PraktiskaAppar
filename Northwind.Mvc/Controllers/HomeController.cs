@@ -85,7 +85,7 @@ namespace Northwind.Mvc.Controllers
                     .Select(error => error.ErrorMessage)
             );
 
-            return View(thing); //en sida som visar det användaren skickade
+            return View(model); //en sida som visar det användaren skickade
         }
 
         [Authorize(Roles ="Admin")]
